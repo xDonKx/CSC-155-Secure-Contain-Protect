@@ -150,6 +150,9 @@ body {
 }
 
 @media (max-width: 600px) {
+    #scp-logo-graphic {
+        background-size: 80%;
+    }
     #warning-screen h1 {
         font-size: 2.8em;
         letter-spacing: 2px;
