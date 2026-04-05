@@ -153,7 +153,7 @@ body {
     #scp-logo-graphic {
         width: 100vw;
         height: 100vh;
-        background-size: contain 80%;
+        background-size: contain 200%;
     }
 
     #warning-screen h1 {
