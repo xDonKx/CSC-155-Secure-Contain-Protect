@@ -1,7 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
 body {
     background-color: #000000;
     color: #FFFFFF;
@@ -12,18 +8,15 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden;
-    padding: 20px;
+    overflow: hidden;
 }
 
 .Graphic-Container {
     text-align: center;
     position: relative;
-    width: 100%;
+    height: 400px;
+    width: 95vw;
     max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 #scp-logo-graphic {
@@ -38,13 +31,13 @@ body {
     background-position: center center;
     width: 1948px;
     height: 4256px;
-    pointer-events: none;
 }
 
 #warning-screen, #login-screen {
-    position: relative;
-    left: auto;
-    transform: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -64,14 +57,13 @@ body {
 #warning-screen p {
     color: #ffffff;
     font-size: 1.3em;
-    margin: 0 auto 5px auto;
-    max-width: 90%;
+    margin-bottom: 5px;
 }
 #warning-screen h1 {
     color: #ff0000;
-    font-size: clamp(2.5rem, 10vw, 5em);
+    font-size: 5em;
     margin: 0;
-    letter-spacing: 2px;
+    letter-spacing: 5px;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
 }
 .sub-text {
@@ -134,12 +126,12 @@ body {
 .login-credentials input {
     width: 100%;
     max-width: 350px;
-    height: 41px;
+    height: 17px;
     padding: 11px 10px;
     background: transparent;
     border: 1px solid #FFFFFF;
     color: #FFFFFF;
-    font-size: 16px;
+    font-size: 1em;
     text-align: center;
     outline: none;
 }
@@ -157,29 +149,14 @@ body {
     justify-content: center;
 }
 
-
-@media screen and (max-width: 600px) {
-    .Graphic-Container {
-        min-height: auto;
-        padding: 40px 0;
+@media (max-width: 600px) {
+    #warning-screen h1 {
+        font-size: 3.5em;
     }
-
-    #warning-screen p {
-        font-size: 1.1em;
-    }
-
     .login-subtitle {
         font-size: 1.5em;
     }
-
     .login-credentials {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .login-button-icon {
-        border-left: 1px solid #ff0000;
-        width: 100%;
-        max-width: 372px;
+        padding: 0 10px;
     }
 }
