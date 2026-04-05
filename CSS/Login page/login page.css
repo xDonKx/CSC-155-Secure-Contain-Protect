@@ -153,18 +153,22 @@ body {
     #scp-logo-graphic {
         width: 100vw;
         height: 100vh;
-        background-size: fill;
+        background-size: 80% auto;
     }
+
     #warning-screen h1 {
         font-size: 2.8em;
         letter-spacing: 2px;
     }
+
     .login-subtitle {
         font-size: 1.5em;
     }
+
     .login-credentials input {
         max-width: 180px;
     }
+    
     .login-credentials {
         padding: 0 10px;
     }
