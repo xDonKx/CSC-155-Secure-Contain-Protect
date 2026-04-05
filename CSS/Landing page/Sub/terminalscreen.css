@@ -1,0 +1,53 @@
+#terminal-screen {
+    background-color: #000000;
+    color: #ffffff; 
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    z-index: 9999;
+}
+
+.status-granted {
+    color: #00ff00;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-denied {
+    color: #ff0000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.cursor {
+    display: inline-block;
+    background-color: #ffffff;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+#terminal-screen::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}

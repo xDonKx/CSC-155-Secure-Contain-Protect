@@ -1,0 +1,153 @@
+@import url('../../../CSS/Landing%20page/landing%20page.css');
+
+:root {
+    --color-safe: #008000;
+    --color-euclid: #ffc000;
+    --color-keter: #cc0000;
+    --color-thaumiel: #330066;
+    --color-neutral: #555555;
+    --color-denied-text: #ff3333;
+    --color-denied-border: #cc0000;
+}
+
+#main-content {
+    opacity: 1;
+    padding: 30px 40px 30px 20px;
+    max-width: 1000px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#main-content p {
+    color: var(--text-color-primary);
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin-bottom: 1.2em;
+    padding-left: 20px;
+}
+
+.general-overview p:last-child {
+    font-weight: 600;
+    color: var(--color-euclid);
+    padding: 10px 20px;
+    border-left: 4px solid var(--color-euclid);
+    background-color: rgba(255, 192, 0, 0.05);
+    margin-top: 15px;
+}
+
+#scp-index-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.scp-dropdown-group {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 0 20px 20px;
+}
+
+.scp-dropdown-group label {
+    color: var(--text-color-secondary);
+    font-family: var(--font-terminal);
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.scp-dropdown-group select {
+    padding: 10px;
+    background-color: var(--bg-color);
+    color: var(--text-color-primary);
+    border: 1px solid var(--text-color-secondary);
+    font-family: var(--font-terminal);
+    font-size: 1em;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+#file-display {
+    min-height: 250px;
+    border: 1px solid var(--text-color-primary);
+    padding: 20px;
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.access-denied-message {
+    text-align: center;
+    color: var(--color-denied-text);
+    border: 3px dashed var(--color-denied-border);
+    padding: 30px;
+    animation: pulse-red 2s infinite alternate;
+}
+
+.access-denied-message h2 {
+    font-size: 2em;
+    font-family: var(--font-terminal);
+    margin-bottom: 5px;
+    text-shadow: 0 0 5px var(--color-denied-border);
+}
+
+.access-denied-message p {
+    color: inherit;
+    font-family: var(--font-terminal);
+    margin-bottom: 10px;
+    padding-left: 0;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.access-granted-message {
+    color: var(--text-color-primary);
+    text-align: left;
+    padding: 10px;
+}
+
+.access-granted-message p {
+    padding-left: 0;
+    margin-bottom: 1.5em;
+    font-size: 1.1em;
+    text-align: justify;
+}
+
+.scp-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--color-euclid);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    color: var(--color-euclid);
+    text-transform: uppercase;
+    font-size: 1.6em;
+}
+
+.scp-object-class {
+    font-weight: bold;
+    font-family: var(--font-terminal);
+    font-size: 1.1em;
+}
+
+.euclid {
+    color: var(--color-euclid);
+}
+
+.class-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--color-euclid);
+    margin: 15px 0;
+}
+
+@keyframes pulse-red {
+    from {
+        box-shadow: 0 0 5px var(--color-denied-border);
+    }
+    to {
+        box-shadow: 0 0 15px var(--color-denied-border);
+    }
+}

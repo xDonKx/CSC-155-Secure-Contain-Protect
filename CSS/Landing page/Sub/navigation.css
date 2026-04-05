@@ -1,0 +1,88 @@
+.menu-button.hidden {
+    display: none !important;
+}
+
+.menu-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: 2px solid var(--text-color-secondary);
+    color: var(--text-color-secondary);
+    font-size: 1.5em;
+    padding: 5px 10px;
+    cursor: pointer;
+    z-index: 2500;
+    font-family: var(--font-terminal);
+}
+
+.menu-button:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-color);
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 250px;
+    height: 100%;
+    background-color: rgba(13, 13, 13, 0.95);
+    border-right: 2px solid var(--accent-color);
+    padding: 100px 20px 20px 20px;
+    box-shadow: 5px 0 15px rgba(204, 0, 0, 0.4);
+    transition: left 0.3s ease-in-out;
+    z-index: 2000;
+}
+
+#sidebar.open {
+    left: 0;
+}
+
+#sidebar h3 {
+    color: var(--text-color-secondary);
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--text-color-secondary);
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar li {
+    margin-bottom: 10px;
+}
+
+#sidebar a {
+    color: var(--text-color-primary);
+    text-decoration: none;
+    font-size: 0.9em;
+    display: block;
+    padding: 5px;
+    transition: background-color 0.2s, color 0.2s;
+    z-index: 9998 !important;
+}
+
+#sidebar a:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.user-info {
+    font-size: 0.7em;
+    color: #888;
+    padding-top: 15px;
+}
+
+.status-bar-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 50;
+    text-align: right;
+    width: 250px;
+}

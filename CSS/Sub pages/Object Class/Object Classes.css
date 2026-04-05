@@ -1,0 +1,88 @@
+@import url('../../../CSS/Landing%20page/landing%20page.css');
+#main-content {
+    opacity: 1;
+    padding: 30px 40px 30px 20px;
+    max-width: 1000px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#main-content p {
+    color: var(--text-color-primary);
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin-bottom: 1.2em;
+    padding-left: 20px;
+}
+
+.section-heading {
+    color: var(--text-color-secondary);
+    font-size: 1.8em;
+    padding-top: 30px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed var(--text-color-secondary);
+}
+
+.general-overview {
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.document-divider {
+    border: none;
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    margin: 40px 0;
+}
+
+.class-entry {
+    background-color: rgba(13, 13, 13, 0.7);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-left: 5px solid var(--text-color-primary);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.class-entry:hover {
+    background-color: rgba(20, 20, 20, 0.85);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.class-title {
+    font-size: 2.2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid currentColor;
+    color: var(--text-color-primary);
+    transition: color 0.3s ease;
+}
+
+.class-title img.class-icon {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+}
+
+.class-entry p {
+    margin-bottom: 15px;
+    font-size: 0.95em;
+}
+
+.class-entry.safe { border-left-color: #008000; }
+.class-entry.safe .class-title { color: #008000; text-shadow: 0 0 5px rgba(0, 128, 0, 0.5); }
+
+.class-entry.euclid { border-left-color: #ff8c00; }
+.class-entry.euclid .class-title { color: #ff8c00; text-shadow: 0 0 5px rgba(255, 140, 0, 0.5); }
+
+.class-entry.keter { border-left-color: #cc0000; }
+.class-entry.keter .class-title { color: #cc0000; text-shadow: 0 0 5px rgba(204, 0, 0, 0.5); }
+
+.class-entry.thaumiel { border-left-color: #00508d; }
+.class-entry.thaumiel .class-title { color: #00508d; text-shadow: 0 0 5px rgba(0, 80, 141, 0.5); }

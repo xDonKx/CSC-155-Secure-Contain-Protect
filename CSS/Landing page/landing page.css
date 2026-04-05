@@ -1,0 +1,79 @@
+@import url('misc.css');
+@import url('Sub/terminalscreen.css');
+@import url('Sub/navigation.css');
+@import url('Sub/notifcation.css');
+@import url('Sub/lockdown.css');
+@import url('Sub/status%20bar.css');
+@import url('../../Fonts/roboto%20mono/roboto%20mono.css');
+
+* {
+    font-family:'Roboto Mono';
+}
+
+:root {
+    --bg-color: #000000;
+    --text-color-primary: #f0f0f0;
+    --text-color-secondary: #00ff00;
+    --accent-color: #cc0000;
+    --font-terminal: 'Roboto Mono', monospace;
+    --z-index-alert: 2000;
+}
+
+html.has-booted #terminal-screen {
+    display: none !important;
+}
+
+html.has-booted #main-content {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+body {
+    background-image: url('../../Media/Images/Background/Secure%20Contain%20Protect.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: var(--text-color-primary);
+    font-family: var(--font-terminal);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+#main-content {
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    min-height: 100vh;
+}
+
+#main-content.hidden { 
+    display: none; 
+
+}
+
+
+.hidden {
+    display: none;
+}
+
+.hero-section {
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.clearance-level {
+    color: var(--text-color-secondary);
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.main-title {
+    color: var(--accent-color);
+    font-size: 3em;
+    text-shadow: 0 0 5px var(--accent-color);
+    margin-bottom: 15px;
+}

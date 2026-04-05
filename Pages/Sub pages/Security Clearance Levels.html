@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Foundation - Clearance Levels</title>
+    <link rel="stylesheet"
+        href="../../CSS/Sub%20pages/Security%20Clearemce%20Levels/Security%20Clearence%20Levels.css">
+</head>
+
+<body id="scp-page">
+
+    <button id="menu-toggle" class="menu-button">☰</button>
+
+    <nav id="sidebar">
+        <h3>CLASSIFIED DATABASE MENU</h3>
+        <ul>
+            <li><a href="../landing%20page.html">Main Operations Dashboard</a></li>
+            <li><a href="../Sub%20pages/About%20the%20SCP%20Foundation.html">About The SCP Foundation</a></li>
+            <li><a href="../Sub%20pages/Security%20Clearance%20Levels.html">Security Clearance Levels</a></li>
+            <li><a href="../Sub%20pages/Object%20Classes.html">Object Classes</a></li>
+            <li><a href="../Sub%20pages/Departments.html">Departments</a></li>
+            <li><a href="../Sub%20pages/SCP%20files.html">SCP Files (Series I)</a></li>
+        </ul>
+        <hr>
+        <div class="user-info">
+            <p>USER ID: P-477-L0</p>
+            <p>JUNIOR RESEARCHER</p>
+            <p>CLEARANCE: LEVEL 2</p>
+        </div>
+    </nav>
+
+    <div id="main">
+
+        <div id="main-content">
+
+            <div id="alert-notification">
+                <p id="alert-message"></p>
+            </div>
+
+            <div id="notification-area">
+                <div id="notification-icon">
+                    <img id="notification-image" src="../../Media/Images/Notification%20Icon.png" alt="Alert Icon"
+                        class="notification-graphic">
+                    <span id="alert-count" class="hidden">0</span>
+                </div>
+                <div id="alert-dropdown" class="hidden">
+                    <h3>ACTIVITY LOG</h3>
+                    <ul id="alert-list">
+                    </ul>
+                    <p id="no-alerts-msg">No unread alerts.</p>
+                </div>
+            </div>
+
+            <div class="status-bar-container">
+                <span id="server-time" class="status-bar">00-00-0000 00:00:00</span>
+                <span id="site-status" class="status-bar">SITE-██ STATUS: GREEN</span>
+            </div>
+
+            <header class="hero-section">
+                <h2 class="clearance-level">LEVEL 2 / RESTRICTED DATA ACCESS REQUIRED</h2>
+                <h2 class="main-title">DATABASE FILE: PERSONNEL & ACCESS OVERVIEW</h2>
+            </header>
+
+            <section class="clearance-section">
+                <h3 class="section-heading">SECURITY CLEARANCES</h3>
+                <p>Foundation security clearances granted to personnel represent the highest level or type of
+                    information to which they can be granted access. However, having any given clearance level does not
+                    automatically grant access to all information at that level: personnel are only granted access to
+                    information on a "need-to-know" basis and at the discretion of the designated disclosure officer
+                    overseeing their respective departments.</p>
+
+                <div class="level-entry">
+                    <h4 class="level-title">LEVEL 0 (For Official Use Only)</h4>
+                    <p>Level 0 security clearances are given to non-essential personnel with no need to access
+                        information regarding anomalous objects or entities in Foundation containment. Level 0 access is
+                        typically held by personnel in non-secured clerical, logistics, or janitorial positions at
+                        facilities with no access to operational data.</p>
+                </div>
+
+                <div class="level-entry">
+                    <h4 class="level-title">LEVEL 1 (Confidential)</h4>
+                    <p>Level 1 security clearances are given to personnel working in proximity to but with no direct,
+                        indirect, or informational access to anomalous objects or entities in containment. Level 1
+                        security clearances are typically granted to personnel working in clerical, logistics, or
+                        janitorial positions at facilities with containment capability or otherwise must handle
+                        sensitive information.</p>
+                </div>
+
+                <div class="level-entry">
+                    <h4 class="level-title">LEVEL 2 (Restricted)</h4>
+                    <p>Level 2 security clearances are given to security and research personnel that require direct
+                        access to information regarding anomalous objects and entities in containment. Most research
+                        staff, field agents, and containment specialists hold a Level 2 security clearance.</p>
+                </div>
+
+                <div class="level-entry">
+                    <h4 class="level-title">LEVEL 3 (Secret)</h4>
+                    <p>Level 3 security clearances are given to senior security and research personnel that require
+                        in-depth data regarding the source, recovery circumstances, and long-term planning for anomalous
+                        objects and entities in containment. Most senior research staff, project managers, security
+                        officers, response team members, and Mobile Task Force operatives hold a Level 3 security
+                        clearance.</p>
+                </div>
+
+                <div class="level-entry">
+                    <h4 class="level-title">LEVEL 4 (Top Secret)</h4>
+                    <p>Level 4 security clearances are given to senior administration that require access to site-wide
+                        and/or regional intelligence as well as long-term strategic data regarding Foundation operations
+                        and research projects. Level 4 security clearances are typically only held by Site Directors,
+                        Security Directors, or Mobile Task Force Commanders.</p>
+                </div>
+
+                <div class="level-entry">
+                    <h4 class="level-title">LEVEL 5 (Thaumiel)</h4>
+                    <p>Level 5 security clearances are given to the highest-ranking administrative personnel within the
+                        Foundation and grant effectively unlimited access to all strategic and otherwise sensitive data.
+                        Level 5 security clearances are typically only granted to O5 Council members and selected staff.
+                    </p>
+                </div>
+
+                <hr class="document-divider">
+
+                <h3 class="section-heading">PERSONNEL CLASSIFICATIONS</h3>
+                <p>Classifications are assigned to personnel based on their proximity to potentially dangerous anomalous
+                    objects, entities, or phenomena.</p>
+
+                <div class="level-entry">
+                    <h4 class="level-title">Class A</h4>
+                    <p>Class A personnel are those deemed essential to Foundation strategic operations, and are not
+                        allowed direct access to anomalies under any circumstances. When circumstances require Class A
+                        personnel to be in direct proximity to such anomalies (such as in the case of facilities housing
+                        containment units), Class A personnel are not allowed access to the areas of the facility
+                        containing such anomalies and are to be kept in secured areas at all times. In the case of an
+                        emergency, Class A personnel are to be immediately evacuated to a designated and secure off-site
+                        location. **O5 Council members are always Class A personnel.**</p>
+                </div>
+
+                <div class="level-entry">
+                    <h4 class="level-title">Class B</h4>
+                    <p>Class B personnel are those deemed essential to local Foundation operations, and may only be
+                        granted access to objects, entities, and anomalies that have passed quarantine and have been
+                        cleared of any potential mind-affecting effects or memetic agents. In the event of a containment
+                        breach or hostile action against a Foundation facility, Class B personnel are to be evacuated to
+                        a designated, secure off-site location as soon as possible.</p>
+                </div>
+
+                <div class="level-entry">
+                    <h4 class="level-title">Class C</h4>
+                    <p>Class C personnel are personnel with direct access to most anomalies not deemed strictly hostile
+                        or dangerous. Class C personnel that have had direct contact with potentially mind-affecting or
+                        memetic properties may be subject to mandatory quarantine and psychiatric evaluation as deemed
+                        necessary by security personnel. In the event of a containment breach or hostile action against
+                        a Foundation facility, non-combatant Class C personnel are to either report to secure lock-down
+                        areas or evacuated at the discretion of on-site security personnel in the case of a site-wide
+                        breach or other catastrophic event.</p>
+                </div>
+
+                <div class="level-entry">
+                    <h4 class="level-title">Class D</h4>
+                    <p>Class D personnel are expendable personnel used to handle extremely hazardous anomalies and are
+                        not allowed to come into contact with Class A or Class B personnel. Class D personnel are
+                        typically drawn worldwide from the ranks of prison inmates convicted of violent crimes,
+                        especially those on death row. In times of duress, Protocol 12 may be enacted, which allows
+                        recruitment from other sources — such as political prisoners, refugee populations, and other
+                        civilian sources — that can be transferred into Foundation custody under plausibly deniable
+                        circumstances. **Class D personnel are to be given regular mandatory psychiatric evaluations and
+                        are to be administered an amnestic of at least Class B strength or terminated at the end of the
+                        month** at the discretion of on-site security or medical staff. In the event of a catastrophic
+                        site event, Class D personnel are to be terminated immediately except as deemed necessary by
+                        on-site security personnel.</p>
+                </div>
+
+                <div class="level-entry">
+                    <h4 class="level-title">Class E</h4>
+                    <p>Class E is a provisional classification applied to field agents and containment personnel that
+                        have been exposed to potentially dangerous effects during the course of securing and
+                        establishing initial containment over a newly-designated anomalous object, entity, or
+                        phenomenon. Class E personnel are to be quarantined as soon as possible, monitored, and screened
+                        for potentially harmful changes in behavior, personality, or physiology, and may only return to
+                        duty after being fully debriefed and cleared by psychiatric and medical staff.</p>
+                </div>
+
+                <hr class="document-divider">
+
+                <h3 class="section-heading">STAFF TITLES</h3>
+
+                <h4 class="level-title">Site Staff</h4>
+                <div class="job-entry">
+                    <h5 class="job-title">Containment Specialist</h5>
+                    <p>Containment specialists have two main roles at Foundation facilities. Firstly, containment teams
+                        are called upon to respond to confirmed cases of anomalous activity to secure and establish
+                        initial containment over anomalous objects, entities, or phenomena and transport them to the
+                        nearest Foundation containment site. In addition, Foundation containment engineers and
+                        technicians are called upon to devise, refine, and maintain containment units and schemes for
+                        objects, entities, and phenomena in Foundation facilities.</p>
+                </div>
+
+                <div class="job-entry">
+                    <h5 class="job-title">Researcher</h5>
+                    <p>Researchers are the scientific branch of the Foundation, drawn from the ranks of the smartest and
+                        best-trained research scientists from around the world. With specialists in every field
+                        imaginable, from chemistry and botany to more esoteric or specialized fields such as theoretical
+                        physics and xenobiology, the goal of the Foundation's research projects is to gain a better
+                        understanding of unexplained anomalies and how they operate.</p>
+                </div>
+
+                <div class="job-entry">
+                    <h5 class="job-title">Security Officer</h5>
+                    <p>On-site security officers — often referred to simply as guards — at Foundation facilities are
+                        tasked with maintaining physical and information security for Foundation projects, operations,
+                        and personnel. Primarily drawn and recruited from military, law enforcement, and correctional
+                        facility personnel, security officers are trained in the use of all types of weapons as well as
+                        a variety of contingency plans covering both containment breach incidents as well as hostile
+                        action. These personnel are also responsible for information security, such as making sure that
+                        sensitive documents are not misplaced and that a facility's computer systems are safe from
+                        outside intrusion. They are also often the first line of defense against hostile outside forces
+                        for Foundation facilities.</p>
+                </div>
+
+                <div class="job-entry">
+                    <h5 class="job-title">Tactical Response Officer</h5>
+                    <p>Response teams — or tactical teams — are highly trained and heavily armed combat teams tasked
+                        with escorting containment teams when dangerous anomalous entities or hostile Groups of Interest
+                        are involved and defending Foundation facilities against hostile action. Response teams are
+                        effectively military units stationed at major Foundation facilities that are ready to deploy at
+                        a moment's notice.</p>
+                </div>
+
+                <h4 class="level-title">Field Personnel</h4>
+                <div class="job-entry">
+                    <h5 class="job-title">Field Agent</h5>
+                    <p>Field agents are the eyes and ears of the Foundation, personnel trained to look for and
+                        investigate signs of anomalous activity, often undercover with local or regional law enforcement
+                        or embedded in local services such as emergency medical services and regulatory organizations.
+                        As undercover units, field agents are typically not equipped to deal with confirmed cases of
+                        anomalous activity; once such an incident has been confirmed and isolated, field agents will
+                        typically call for assistance from the nearest field containment team with the means to safely
+                        secure and contain such anomalies.</p>
+                </div>
+
+                <div class="job-entry">
+                    <h5 class="job-title">Mobile Task Force Operative</h5>
+                    <p>Mobile Task Forces are specialist units comprised of veteran field personnel drawn from all over
+                        the Foundation. These task forces are mobilized to deal with threats of a specific nature and
+                        can include anything from field researchers specializing in a particular type of anomaly to
+                        heavily armed combat units tasked to secure certain types of hostile anomalous entity. See the
+                        Task Forces document for more detailed information.</p>
+                </div>
+
+                <h4 class="level-title">Administration</h4>
+                <div class="job-entry">
+                    <h5 class="job-title">Site Director</h5>
+                    <p>Site directors for major Foundation facilities are the highest-ranking personnel at that location
+                        and are responsible for the continued, safe operation of the site and all of its contained
+                        anomalies and projects. All major departmental directors report directly to the Site Director,
+                        who in turn reports to the O5 Council.</p>
+                </div>
+
+                <div class="job-entry">
+                    <h5 class="job-title">O5 Council Member</h5>
+                    <p>The O5 Council refers to the committee consisting of the highest-ranking directors of the
+                        Foundation. With complete access to all information regarding anomalies in containment, the O5
+                        Council oversees all Foundation operations worldwide and directs its long-term strategic plans.
+                        Due to the sensitivity of their positions, O5 Council members must not come into direct contact
+                        with any anomalous object, entity, or phenomenon. Furthermore, the identities of all O5 Council
+                        members is classified; all council members are referred to only by their numeric designation
+                        (O5-1 through O5-13).</p>
+                </div>
+
+            </section>
+
+            <hr class="document-divider">
+
+            <footer class="site-footer">
+            </footer>
+        </div>
+    </div>
+
+    <script type="module" src="../../JS/Landing%20page/landing%20page.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+body {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.Graphic-Container {
+    text-align: center;
+    position: relative;
+    height: 400px;
+    width: 600px;
+}
+
+#scp-logo-graphic {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-image: url('../../Media/Images/Background/Secure%20Contain%20Protect.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 1948px;
+    height: 4256px;
+}
+
+#warning-screen, #login-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 2;
+}
+
+#warning-screen {
+    display: block;
+}
+#warning-screen.active, #login-screen.active {
+    opacity: 1;
+}
+#login-screen {
+    display: none;
+}
+
+#warning-screen p {
+    color: #ffffff;
+    font-size: 1.3em;
+    margin-bottom: 5px;
+}
+#warning-screen h1 {
+    color: #ff0000;
+    font-size: 5em;
+    margin: 0;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+.sub-text {
+    color: #FFFFFF;
+    font-size: 0.8em;
+    margin: 15px 0 40px 0;
+}
+
+.button-outline {
+    display: inline-block;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: 1px solid #1c1c1c;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+.button-outline:hover {
+    background-color: rgba(255, 0, 0, 0.2);
+    border-color: #FF0000;
+    color: #FF0000;
+}
+
+.login-button-icon {
+    background: #000000;
+    color: #00ff40;
+    border: none;
+    padding: 11px 13px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1.4em;
+    line-height: 1;
+    white-space: nowrap;
+    font-family: 'Open Sans', Arial, sans-serif;
+    vertical-align: middle;
+    height: 40px;
+}
+
+.login-logo {
+    width: 40%;
+    margin-bottom: 20px;
+}
+.login-subtitle {
+    color: #FFFFFF;
+    font-size: 2em;
+    margin: 5px 0 20px 0;
+    letter-spacing: 1px;
+}
+
+.login-credentials {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 0;                  
+}
+
+.login-credentials input {
+    width: 350px;
+    height: 17px;
+    padding: 11px 10px;
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    font-size: 1em;
+    text-align: center;
+    outline: none;
+}
+
+.login-button-icon {
+    height: 41px; 
+    background: #ff0000;
+    border: 1px solid #ff0000;
+    border-left: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

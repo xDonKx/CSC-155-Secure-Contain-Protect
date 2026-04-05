@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Foundation - Restricted Access Files</title>
+    <link rel="stylesheet" href="../../CSS/Sub%20pages/SCP%20Files/SCP%20Files.css">
+</head>
+
+<body id="scp-page">
+
+    <button id="menu-toggle" class="menu-button">☰</button>
+
+    <nav id="sidebar">
+        <h3>CLASSIFIED DATABASE MENU</h3>
+        <ul>
+            <li><a href="../landing%20page.html">Main Operations Dashboard</a></li>
+            <li><a href="../Sub%20pages/About%20the%20SCP%20Foundation.html">About The SCP Foundation</a></li>
+            <li><a href="../Sub%20pages/Security%20Clearance%20Levels.html">Security Clearance Levels</a></li>
+            <li><a href="../Sub%20pages/Object%20Classes.html">Object Classes</a></li>
+            <li><a href="../Sub%20pages/Departments.html">Departments</a></li>
+            <li><a href="../Sub%20pages/SCP%20files.html">SCP Files (Series I)</a></li>
+        </ul>
+        <hr>
+        <div class="user-info">
+            <p>USER ID: P-477-L0</p>
+            <p>JUNIOR RESEARCHER</p>
+            <p>CLEARANCE: LEVEL 2</p>
+        </div>
+    </nav>
+
+    <div id="main">
+
+        <div id="main-content">
+
+            <div id="notification-area">
+                <div id="notification-icon">
+                    <img id="notification-image" src="../../Media/Images/Notification%20Icon.png" alt="Alert Icon"
+                        class="notification-graphic">
+                    <span id="alert-count" class="hidden">0</span>
+                </div>
+                <div id="alert-dropdown" class="hidden">
+                    <h3>ACTIVITY LOG</h3>
+                    <ul id="alert-list">
+                    </ul>
+                    <p id="no-alerts-msg">No unread alerts.</p>
+                </div>
+            </div>
+
+            <div class="status-bar-container">
+                <span id="server-time" class="status-bar">00-00-0000 00:00:00</span>
+                <span id="site-status" class="status-bar">SITE-██ STATUS: GREEN</span>
+            </div>
+
+
+            <header class="hero-section">
+                <h1 class="clearance-level">LEVEL 2 / RESTRICTED ACCESS REQUIRED</h1>
+                <h1 class="main-title">Secure SCP Database Index</h1>
+
+
+            </header>
+
+            <p class="general-overview">Access is currently restricted to SCP files within the 001 to 200 range.</p>
+
+            <h2 class="section-heading">SCP File Index (001 - 200)</h2>
+
+            <div id="scp-index-container">
+                <div class="scp-dropdown-group">
+                    <label for="series-1">SCP Series I (001 - 200)</label>
+                    <select id="series-1" onchange="displayFile(this.value)">
+                        <option value="" selected disabled>Select an SCP File...</option>
+                    </select>
+                </div>
+            </div>
+
+            <hr class="document-divider">
+
+            <div id="file-display">
+                <p>Please select an SCP file from the index above to attempt file retrieval.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="../../JS/Landing%20page/landing%20page.js"></script>
+    <script type="module" src="../../JS/SCP%20Files/scp%20files.js"></script>
+</body>
+
+</html>

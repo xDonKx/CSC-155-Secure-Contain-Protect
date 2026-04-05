@@ -1,0 +1,32 @@
+.status-bar-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 50;
+    text-align: right;
+    width: 250px;
+}
+
+.status-bar {
+    font-size: 0.8em;
+    padding: 5px 10px;
+    margin-top: 5px;
+    display: block;
+    border: 1px solid var(--text-color-secondary);
+    color: var(--text-color-secondary);
+    background-color: rgba(13, 13, 13, 0.9);
+}
+
+.status-red {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-color);
+    font-weight: bold;
+}
+
+.status-yellow {
+    color: yellow;
+    border-color: yellow;
+    text-shadow: 0 0 5px yellow;
+    font-weight: bold;
+}

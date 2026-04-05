@@ -1,0 +1,85 @@
+@import url('../../../CSS/Landing%20page/landing%20page.css');
+
+#main-content {
+    opacity: 1;
+    padding: 30px 40px 30px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+#main-content p {
+    color: var(--text-color-primary);
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin-bottom: 1.2em;
+}
+
+.hero-section {
+    padding-top: 50px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.clearance-level {
+    color: var(--text-color-secondary);
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.mission-statement-heading {
+    color: var(--accent-color);
+    font-size: 1.6em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.about-section h4 {
+    color: var(--text-color-primary);
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.about-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-section ul li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.about-section ul li::before {
+    content: '■';
+    color: var(--text-color-primary);
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+}
+
+.about-section p[style*="text-align: center"] {
+    color: var(--text-color-primary);
+    font-style: italic;
+    font-size: 1.1em;
+    margin: 40px 0;
+    padding: 20px;
+    border: 1px solid #333333;
+}
+
+.document-divider {
+    border: none;
+    height: 1px;
+    background-color: #333333;
+    margin: 50px 0;
+}
+
+.about-section ul li strong {
+    font-weight: 900;
+    color: var(--text-color-primary);
+}

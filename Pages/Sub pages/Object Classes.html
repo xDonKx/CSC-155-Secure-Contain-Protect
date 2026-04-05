@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Foundation - Object Classes</title>
+    <link rel="stylesheet" href="../../CSS/Sub%20pages/Object%20Class/Object%20Classes.css">
+</head>
+
+<body id="scp-page">
+
+    <button id="menu-toggle" class="menu-button">☰</button>
+
+    <nav id="sidebar">
+        <h3>CLASSIFIED DATABASE MENU</h3>
+        <ul>
+            <li><a href="../landing%20page.html">Main Operations Dashboard</a></li>
+            <li><a href="../Sub%20pages/About%20the%20SCP%20Foundation.html">About The SCP Foundation</a></li>
+            <li><a href="../Sub%20pages/Security%20Clearance%20Levels.html">Security Clearance Levels</a></li>
+            <li><a href="../Sub%20pages/Object%20Classes.html">Object Classes</a></li>
+            <li><a href="../Sub%20pages/Departments.html">Departments</a></li>
+            <li><a href="../Sub%20pages/SCP%20files.html">SCP Files (Series I)</a></li>
+        </ul>
+        <hr>
+        <div class="user-info">
+            <p>USER ID: P-477-L0</p>
+            <p>JUNIOR RESEARCHER</p>
+            <p>CLEARANCE: LEVEL 2</p>
+        </div>
+    </nav>
+
+    <div id="main">
+
+        <div id="main-content">
+
+            <div id="notification-area">
+                <div id="notification-icon">
+                    <img id="notification-image" src="../../Media/Images/Notification%20Icon.png" alt="Alert Icon" class="notification-graphic">
+                    <span id="alert-count" class="hidden">0</span>
+                </div>
+                <div id="alert-dropdown" class="hidden">
+                    <h3>ACTIVITY LOG</h3>
+                    <ul id="alert-list">
+                    </ul>
+                    <p id="no-alerts-msg">No unread alerts.</p>
+                </div>
+            </div>
+
+            <div class="status-bar-container">
+                <span id="server-time" class="status-bar">00-00-0000 00:00:00</span>
+                <span id="site-status" class="status-bar">SITE-██ STATUS: GREEN</span>
+            </div>
+
+            <header class="hero-section">
+                <h2 class="clearance-level">LEVEL 2 / RESTRICTED DATA ACCESS REQUIRED</h2>
+                <h2 class="main-title">DATABASE FILE: OBJECT CLASSIFICATION SYSTEM</h2>
+            </header>
+
+            <section class="clearance-section">
+                <h3 class="section-heading">PRIMARY OBJECT CLASSES</h3>
+                <p class="general-overview">Object Classes are used to classify anomalous objects, entities, and phenomena based on how difficult they are to contain. The Foundation uses a wide range of classes, but the primary classification system is commonly known as the 'Safe-Euclid-Keter' (SEK) rating.</p>
+
+                <div class="class-entry safe">
+                    <h4 class="class-title">
+                        <span>SAFE</span>
+                        <img src="../../Media/Images/Classes/Safe.png" alt="Safe Object Class Icon" class="class-icon">
+                    </h4>
+                    <p>Safe class SCPs are anomalies that are either sufficiently understood that they can be reliably contained with minimal resources, or that pose no threat when contained. To be classified as Safe, an SCP must be fully contained and containable, meaning the likelihood of a containment breach is low. It is important to note that Safe does not mean the object poses no danger once containment is breached.</p>
+                </div>
+
+                <div class="class-entry euclid">
+                    <h4 class="class-title">
+                        <span>EUCLID</span>
+                        <img src="../../Media/Images/Classes/Euclid.png" alt="Euclid Object Class Icon" class="class-icon">
+                    </h4>
+                    <p>Euclid class SCPs are anomalies that are either insufficiently understood or inherently unpredictable, meaning reliable containment is not always possible. Euclid is considered the default class for any anomaly that is not immediately obvious as Safe or Keter. This category often includes objects that are sentient, sapient, or exhibit behaviors that cannot be fully predicted.</p>
+                </div>
+
+                <div class="class-entry keter">
+                    <h4 class="class-title">
+                        <span>KETER</span>
+                        <img src="../../Media/Images/Classes/Keter.png" alt="Keter Object Class Icon" class="class-icon">
+                    </h4>
+                    <p>Keter class SCPs are anomalies that are extremely difficult to contain consistently or reliably, with containment procedures often being extensive and complex. These objects typically pose a major threat to Foundation personnel and the surrounding world. Keter classification is often applied to world-ending, self-aware, or highly dangerous anomalies.</p>
+                </div>
+
+                <div class="class-entry thaumiel">
+                    <h4 class="class-title">
+                        <span>THAUMIEL</span>
+                        <img src="../../Media/Images/Classes/Thaumiel.png" alt="Thaumiel Object Class Icon" class="class-icon">
+                    </h4>
+                    <p>Thaumiel class SCPs are anomalies that are used by the Foundation to contain other SCPs, or for other highly secretive purposes. The existence of Thaumiel class objects is top secret and known only to O5 Council members and select personnel. These objects are often contained in the most secure and remote Foundation facilities.</p>
+                </div>
+
+                <hr class="document-divider">
+
+                <h3 class="section-heading">SECONDARY OBJECT CLASSES</h3>
+                <p class="general-overview">The following object classes are less frequently used, and designate anomalies with unusual containment requirements.</p>
+
+                <div class="class-entry apollyon">
+                    <h4 class="class-title">APOLLYON</h4>
+                    <p>Apollyon-class SCPs are anomalies that cannot be contained, are expected to breach containment imminently, or some other similar scenario. Such anomalies are usually associated with world-ending threats or a K-Class Scenario of some kind, and require a massive effort from the Foundation to deal with.</p>
+                </div>
+
+                <div class="class-entry archon">
+                    <h4 class="class-title">ARCHON</h4>
+                    <p>Archon-class SCPs are anomalies that could theoretically be contained but are best left uncontained for some reason. Archon SCPs may be a part of consensus reality that is difficult to fully contain, or may have adverse effects if put into containment. The defining feature of the class is that the Foundation chooses to not put the anomaly into containment.</p>
+                </div>
+
+                <div class="class-entry ticonderoga">
+                    <h4 class="class-title">TICONDEROGA</h4>
+                    <p>Ticonderoga-class SCPs cannot be contained, but also do not need to be contained. While similar to Archon-class SCPs in that their containment is unnecessary, Ticonderoga-class SCPs are distinguished by also not being containable given the Foundation's current knowledge and resources. This may be due to their widespread or ubiquitous occurrence on Earth, or because they are extraterrestrial anomalies beyond the current reach of the Foundation.</p>
+                </div>
+
+                <hr class="document-divider">
+
+                <h3 class="section-heading">NON-STANDARD OBJECT CLASSES</h3>
+                <p class="general-overview">Most of the following Object Classes indicate that an SCP has not yet been assigned a standard object class, or that it was previously assigned a Standard Object Class but no longer requires containment. There are also additional Object Classes that are used less frequently than the ones listed above, known as Esoteric or Narrative object classes.</p>
+
+                <div class="class-entry explained">
+                    <h4 class="class-title">EXPLAINED</h4>
+                    <p>Explained SCPs are commonly articles about anomalies that are completely and fully understood, to the point where their effects are now explainable by mainstream science, or phenomena that have been debunked or falsely mistaken as an anomaly.</p>
+                </div>
+
+                <div class="class-entry neutralized">
+                    <h4 class="class-title">NEUTRALIZED</h4>
+                    <p>Neutralized SCPs are former anomalies that are no longer anomalous, either through having been intentionally or accidentally destroyed or disabled.</p>
+                </div>
+
+                <div class="class-entry decommissioned">
+                    <h4 class="class-title">DECOMMISSIONED</h4>
+                    <p>Decommissioned SCPs are anomalies that have been intentionally destroyed or stripped of their anomalous properties by the SCP Foundation. This class is only used when it is not possible to fully contain an anomaly, or when excessive expenditure of resources is required. Decommissioning requires authorization from a higher authority, such as the O5 Council or the Ethics Committee.</p>
+                </div>
+
+                <div class="class-entry pending">
+                    <h4 class="class-title">PENDING</h4>
+                    <p>SCP articles that have not yet been assigned an object class may be labelled as Pending. This is used to indicate that the Foundation does not currently have enough information to assign an object class to the anomaly. This is a deliberate decision to emphasis that research is ongoing.</p>
+                </div>
+
+                <div class="class-entry uncontained">
+                    <h4 class="class-title">UNCONTAINED</h4>
+                    <p>SCPs that are not yet contained may be assigned an object class, often Keter, but the Uncontained designation is also used in place of an object class to emphasis that ongoing effort is required to establish or restore containment.</p>
+                </div>
+
+                <div class="class-entry esoteric">
+                    <h4 class="class-title">ESOTERIC</h4>
+                    <p>Additional Object classes not listed above are generally created to further the narrative in a particular SCP and only used once, and so are referred to as Esoteric or Narrative Object Classes. Esoteric object classes that are used often enough may eventually meet the requirements to be added to the list of Secondary Classes above.</p>
+                </div>
+
+            </section>
+
+            <hr class="document-divider">
+
+            <footer class="site-footer">
+            </footer>
+        </div>
+    </div>
+
+    <script type="module" src="../../JS/Landing%20page/landing%20page.js"></script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+const terminalScreen = document.getElementById('terminal-screen');
+const mainContent = document.getElementById('main-content');
+const serverTimeEl = document.getElementById('server-time');
+const siteStatusEl = document.getElementById('site-status');
+const lockdownScreen = document.getElementById('lockdown-screen');
+const amnesticTimerEl = document.getElementById('amnestic-timer');
+const notificationIcon = document.getElementById('notification-icon');
+const alertCountEl = document.getElementById('alert-count');
+const alertDropdown = document.getElementById('alert-dropdown');
+const alertList = document.getElementById('alert-list');
+const noAlertsMsg = document.getElementById('no-alerts-msg');
+const menuToggle = document.getElementById('menu-toggle');
+const sidebar = document.getElementById('sidebar');
+const toastNotification = document.getElementById('toast-notification');
+
+let timeUpdateInterval;
+let breachInterval;
+let unreadAlertCount = 0;
+let availableAlerts = [];
+let isBreachActive = false;
+let activeYellowEvents = 0;
+
+// Used AI here to debug and get the terminalScreen working properly. 
+const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+
+async function runBootSequence() {
+    const terminalOutput = document.getElementById('terminal-output');
+    if (!terminalOutput) return;
+
+    terminalOutput.innerHTML = '';
+    const lines = [
+        { text: "ESTABLISHING CONNECTION TO SECURE_SERVER_SITE-7", type: "loading" },
+        { text: "ACCESS <span class='status-granted'>GRANTED</span>", type: "html" },
+        { text: " ", type: "white" },
+        { text: "CONNECTING TO AUTH SERVERS", type: "loading" },
+        { text: "CREDENTIALS <span class='status-granted'>VERIFIED</span>", type: "html" },
+        { text: "TERMINAL READY. INITIALIZING DATABASE", type: "loading" }
+    ];
+
+    for (const line of lines) {
+        const p = document.createElement('p');
+        p.style.margin = "5px 0";
+        terminalOutput.appendChild(p);
+
+        if (line.type === "loading") {
+            p.textContent = line.text;
+            for (let i = 0; i < 30; i++) {
+                await wait(Math.random() * 100 + 75);
+                p.textContent += ".";
+                terminalScreen.scrollTop = terminalScreen.scrollHeight;
+            }
+            await wait(1000);
+        } else if (line.type === "html") {
+            p.innerHTML = line.text;
+            terminalScreen.scrollTop = terminalScreen.scrollHeight;
+            await wait(1000);
+        } else {
+            p.textContent = line.text;
+            terminalScreen.scrollTop = terminalScreen.scrollHeight;
+            await wait(Math.random() * 1200 + 800);
+        }
+    }
+
+    await wait(1000);
+    enterDashboard();
+}
+
+// Used the help of AI to convert my local.storage logic to session cookie logic and resist on page refresh. 
+function enterDashboard() {
+    terminalScreen.style.opacity = '0';
+    document.cookie = "hasBooted=true; path=/; SameSite=Strict";
+    document.documentElement.classList.add('has-booted'); 
+
+    setTimeout(() => {
+        terminalScreen.style.display = 'none';
+        mainContent.classList.remove('hidden');
+        mainContent.style.display = 'block';
+        mainContent.style.opacity = '1';
+        initializePage();
+    }, 500);
+}
+
+const CONTAINMENT_BREACH_CHANCE = 0.05;
+
+const ALERT_MAPPING = {
+    "PERSONNEL TRANSFER: D-Class rotation complete. Amnestics administered and documentation finalized for new intake.":
+        "PERSONNEL TRANSFER COMPLETE: All D-Class intake procedures finalized. Personnel and documentation filed.",
+
+    "PERSONNEL ALERT: Dr. ██████ is relocating to Site-42. Project files 77-A and 77-B must be archived by 09:00 hours.":
+        "PERSONNEL TRANSFER COMPLETE: Dr. ██████'s project files archived and transfer to Site-42 confirmed.",
+
+    "PERSONNEL TRANSFER: Dr. Alistair Rigsby moving from Site-88 to Site-19. All security passes for Site-88 are now revoked for Dr. Rigsby.":
+        "PERSONNEL TRANSFER COMPLETE: Dr. Alistair Rigsby's transit finalized. Welcome to Site-19.",
+
+    "PERSONNEL TRANSFER: Class D rotation complete in Sector 5. All D-Class intake procedures pending final documentation review.":
+        "PERSONNEL TRANSFER COMPLETE: All D-Class intake procedures finalized and documentation filed in Sector 5.",
+
+    "PERSONNEL ALERT: O5-10's secure communications link is rerouting from Site-01 to Sector 04-A. Temporary comms blackout expected (09:00 - 10:30 hours).":
+        "PERSONNEL TRANSFER COMPLETE: O5-10 secure link successfully rerouted to Sector 04-A. Communications restored.",
+
+    "PERSONNEL TRANSFER: Dr. Jack Bright has been temporarily reassigned to Site-65 for Keter containment analysis. Revoke his access to Level 3 R&D labs.":
+        "PERSONNEL TRANSFER COMPLETE: Dr. Bright confirmed at Site-65. Security permissions updated.",
+
+    "TRANSFER INITIATED: SCP-682 (Keter-Class, Hard-to-Destroy Reptile) scheduled for immediate containment transfer from Sector 07-B to Deep Containment Site 33. All non-essential personnel must vacate Sector 07-B perimeter.":
+        "TRANSFER COMPLETE: SCP-682 safely secured at Deep Containment Site 33. All associated lockdown protocols terminated.",
+
+    "TRANSFER ALERT: Specialized Containment Unit 4 (SCU-4) in transit carrying SCP-173 ('The Sculpture'). Maintain line-of-sight protocol until transit is concluded. Do NOT blink.":
+        "TRANSFER COMPLETE: SCP-173 safely secured. Line-of-sight protocol terminated.",
+
+    "TRANSFER ALERT: Mobile Containment Unit (MCU) 1-4 transporting SCP-789. Site-45 perimeter restricted. Do not approach the designated transport corridor.":
+        "TRANSFER COMPLETE: SCP-789 successfully secured at Site-17. MCU 1-4 returning to hangar. All movement restrictions lifted.",
+
+    "TRANSFER ALERT: SCU-7 operating near Sector 2. Containment of biological anomaly SCP-939 ('The Voice of the Decedents') in transit. Respiratory hazard protocols active within 50 meters.":
+        "TRANSFER COMPLETE: SCP-939 safely secured. All respiratory hazard protocols terminated in Sector 2.",
+
+    "TRANSFER ALERT: Standard Euclid-Class Object SCP-049 ('Plague Doctor') is being moved to a deeper containment cell. Personnel must observe 30-meter exclusion zone.":
+        "TRANSFER COMPLETE: SCP-049 is successfully secured in the new cell. Exclusion zone protocols terminated.",
+
+    "TRANSFER ALERT: Highly unstable object SCP-076-2 (Designate: 'Able') temporarily stored in Vault 3. Minimize magnetic emissions and maintain 24-hour MTF guard detail.":
+        "TRANSFER COMPLETE: SCP-076-2 secured and magnetic emissions stabilized in Vault 3. MTF guard detail established.",
+
+    "TRANSFER ALERT: Safe-Class Object SCP-914 ('The Clockwork') is being moved to Research Lab 4 for testing. Researchers must wear hazmat suits for residue analysis.":
+        "TRANSFER COMPLETE: SCP-914 safely repositioned to Research Lab 4. Containment integrity verified.",
+
+    "TRANSFER ALERT: Safe-Class Object SCP-500 ('Panacea') container being transferred to the Medical Wing storage. Level 3 clearance required for proximity access.":
+        "TRANSFER COMPLETE: SCP-500 secured in Medical Wing storage. Proximity access restrictions lifted.",
+
+    "TRANSFER INITIATED: Low-Risk Non-Anomalous Object 112 (LNAO-112) moving from Lab 3 to Archive D. Expect minor delays in Sector Gamma traffic.":
+        "TRANSFER COMPLETE: LNAO-112 archived. Sector Gamma traffic flow normalized.",
+
+    "TRANSFER ALERT: High-value memetic data package (Project CERES) being uploaded to off-site secure storage. Local network stability may drop 10% for 30 minutes.":
+        "TRANSFER COMPLETE: Project CERES data package fully uploaded and verified. Local network stability restored.",
+
+    "MAINTENANCE NOTICE: Site-199 HVAC systems offline for 2 hours. Personnel should expect temperature fluctuations in Sector Delta.":
+        "MAINTENANCE COMPLETE: Site-199 HVAC systems are back online. Temperature stabilization proceeding normally.",
+
+    "MAINTENANCE NOTICE: Primary Generator 5 scheduled for cold-swap replacement in Sector Beta. Expect temporary low-frequency hum and minor power flicker (20:00 - 22:00 hours).":
+        "MAINTENANCE COMPLETE: Primary Generator 5 replacement finalized. Power grid operating at 100% efficiency.",
+
+    "MAINTENANCE NOTICE: Water Reclamation Plant B offline for filter replacement. Non-potable water supply restricted for 4 hours.":
+        "MAINTENANCE COMPLETE: Water Reclamation Plant B online. Water services operating normally.",
+
+    "MAINTENANCE NOTICE: Fire Suppression System check in Sector Epsilon. Do not tamper with fire alarms during 14:00 - 16:00 window.":
+        "MAINTENANCE COMPLETE: Fire Suppression System check passed in Sector Epsilon.",
+
+    "MAINTENANCE NOTICE: Server Farm 3 scheduled for firmware update. Access to historical logs will be unavailable for 90 minutes.":
+        "MAINTENANCE COMPLETE: Server Farm 3 firmware update successful. Historical log access restored.",
+
+    "MAINTENANCE NOTICE: Exterior perimeter fence pulse emitters offline for repair. MTF security patrols increased outside Sector 1.":
+        "MAINTENANCE COMPLETE: Perimeter fence pulse emitters back online. MTF security patrols returned to normal schedule.",
+
+    "MAINTENANCE NOTICE: Mandatory computer diagnostics initiated site-wide. All non-essential desktop applications must be closed.":
+        "MAINTENANCE COMPLETE: Site-wide diagnostics successfully finished.",
+
+    "MAINTENANCE NOTICE: Cafeteria 'Gamma' sanitation protocol active. Food services unavailable in this area until 13:00 hours.":
+        "MAINTENANCE COMPLETE: Cafeteria 'Gamma' sanitation complete. Food services restored.",
+
+    "MTF-Alpha-1 ('Red Right Hand') deployed to assist with anomalous activity in Sector 7. Clearance level 3 or below are restricted from all adjacent zones.":
+        "MTF A-1 STAND DOWN: MTF Alpha-1 ('Red Right Hand') mission concluded. Anomalous activity in Sector 7 neutralized.",
+
+    "MTF-Epsilon-11 ('Nine Tailed Fox') mobilized for internal security drill in response to a simulated Keter breach in Sector 6.":
+        "MTF E-11 STAND DOWN: MTF Epsilon-11 ('Nine Tailed Fox') internal security drill concluded. All simulated anomalies secured.",
+
+    "MTF-Zeta-9 ('Mole Rats') deployed to investigate structural instability in Sub-Level 7. Evacuate all personnel from Sub-Level 6.":
+        "MTF Z-9 STAND DOWN: MTF Zeta-9 ('Mole Rats') investigation concluded. Structural instability secured and personnel returned to duty."
+};
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function formatAlertText(text) {
+    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
+
+function replenishAlerts() {
+    availableAlerts = Object.keys(ALERT_MAPPING);
+    shuffleArray(availableAlerts);
+}
+
+function saveAppState() {
+    if (!alertList || !siteStatusEl) return;
+
+    const currentAlerts = Array.from(alertList.querySelectorAll('li')).map(li => li.innerHTML);
+
+    const appState = {
+        alertMessages: currentAlerts,
+        unreadCount: unreadAlertCount,
+        isBreach: isBreachActive,
+        siteStatusText: siteStatusEl.textContent,
+        siteStatusClass: Array.from(siteStatusEl.classList).find(c => c.startsWith('status-')) || '',
+        activeYellowEvents: activeYellowEvents
+
+    };
+    sessionStorage.setItem('scpAppState', JSON.stringify(appState));
+}
+
+function loadAppState() {
+    const savedState = sessionStorage.getItem('scpAppState');
+    if (!savedState) return;
+
+    const state = JSON.parse(savedState);
+
+    if (state.alertMessages && alertList) {
+        alertList.innerHTML = '';
+        state.alertMessages.reverse().forEach(messageHTML => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = messageHTML;
+            alertList.prepend(listItem);
+        });
+
+        if (state.alertMessages.length > 0 && noAlertsMsg) {
+            noAlertsMsg.classList.add('hidden');
+        }
+    }
+
+    unreadAlertCount = state.unreadCount || 0;
+    if (alertCountEl) {
+        alertCountEl.textContent = unreadAlertCount;
+        if (unreadAlertCount > 0) {
+            alertCountEl.classList.remove('hidden');
+        } else {
+            alertCountEl.classList.add('hidden');
+        }
+    }
+
+    activeYellowEvents = state.activeYellowEvents || 0;
+
+    isBreachActive = state.isBreach || false;
+    if (siteStatusEl) {
+        if (isBreachActive) {
+            triggerBreach();
+        } else {
+            updateSiteStatus();
+        }
+    }
+
+    if (state.siteStatusClass) {
+        siteStatusEl.classList.add(state.siteStatusClass);
+    }
+
+    if (isBreachActive) {
+        const breachExpiry = sessionStorage.getItem('breachExpiry');
+        const remaining = breachExpiry ? breachExpiry - Date.now() : 5000;
+        setTimeout(startLockdownCountdown, Math.max(remaining, 0));
+    }
+}
+
+function updateTime() {
+    const now = new Date();
+    const date = now.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
+    const time = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    if (serverTimeEl) {
+        serverTimeEl.textContent = `${date} ${time}`;
+    }
+}
+
+function showToastNotification(message) {
+    if (toastNotification) {
+        let displayMessage = message.replace(/\*\*/g, '');
+        toastNotification.textContent = displayMessage;
+        toastNotification.classList.remove('hidden');
+        toastNotification.classList.add('active');
+
+        setTimeout(() => {
+            toastNotification.classList.remove('active');
+            setTimeout(() => {
+                toastNotification.classList.add('hidden');
+            }, 500);
+        }, 5000);
+    }
+}
+
+function logAlert(message) {
+    const now = new Date();
+    const time = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    if (alertList) {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `<strong>[${time}]</strong> ${formatAlertText(message)}`;
+        alertList.prepend(listItem);
+
+        if (noAlertsMsg) noAlertsMsg.classList.add('hidden');
+
+        while (alertList.children.length > 50) alertList.lastChild.remove();
+
+        unreadAlertCount++;
+        if (alertCountEl) {
+            alertCountEl.textContent = unreadAlertCount;
+            alertCountEl.classList.remove('hidden');
+        }
+        saveAppState();
+    }
+    showToastNotification(message);
+}
+
+function startLockdownCountdown() {
+    clearInterval(breachInterval);
+    clearInterval(timeUpdateInterval);
+
+    if (lockdownScreen) {
+        lockdownScreen.style.display = 'flex';
+    }
+
+    document.body.style.overflow = 'hidden';
+    let countdownValue = 5;
+
+    if (amnesticTimerEl) {
+        amnesticTimerEl.textContent = countdownValue;
+
+        const countdownInterval = setInterval(() => {
+            countdownValue--;
+
+            if (countdownValue > 0) {
+                amnesticTimerEl.textContent = countdownValue;
+            } else if (countdownValue === 0) {
+                amnesticTimerEl.textContent = 'EXECUTING';
+            } else {
+                clearInterval(countdownInterval);
+                sessionStorage.removeItem('scpAppState');
+                window.location.replace('404.html');
+            }
+        }, 1000);
+    }
+}
+
+function updateSiteStatus() {
+    if (isBreachActive || !siteStatusEl) return;
+
+    if (activeYellowEvents > 0) {
+        siteStatusEl.textContent = `SITE-██ STATUS: YELLOW - HIGH CAUTION - ${activeYellowEvents} ACTIVE OPERATIONS`;
+        siteStatusEl.classList.add('status-yellow');
+        siteStatusEl.style.color = '#ffff00';
+        siteStatusEl.style.borderColor = '#ffff00';
+    } else {
+        siteStatusEl.textContent = "SITE-██ STATUS: GREEN";
+        siteStatusEl.classList.remove('status-yellow');
+        siteStatusEl.classList.add('status-green');
+        siteStatusEl.style.color = '';
+        siteStatusEl.style.borderColor = '';
+    }
+}
+
+function triggerBreach() {
+    if (isBreachActive) return;
+    isBreachActive = true;
+
+    if (siteStatusEl) {
+        siteStatusEl.textContent = "SITE-██ STATUS: RED - CONTAINMENT BREACH";
+        siteStatusEl.classList.remove('status-yellow', 'status-green');
+        siteStatusEl.classList.add('status-red');
+        siteStatusEl.style.color = '#ff0000';
+        siteStatusEl.style.borderColor = '#ff0000';
+    }
+
+    logAlert("⚠️ **CRITICAL ALERT:** KETER - CLASS CONTAINMENT BREACH DETECTED. ALL PERSONNEL REPORT TO NEAREST EVACUATION BUNKER.");
+
+    const breachExpiry = Date.now() + 60000;
+    sessionStorage.setItem('breachExpiry', breachExpiry);
+    saveAppState();
+
+    setTimeout(startLockdownCountdown, 60000);
+}
+
+//Used AI to help replace message logic from just 1 message then the next to dynamic messages overlapping.
+function runAlertCycle() {
+    if (isBreachActive) return;
+    if (availableAlerts.length === 0) replenishAlerts();
+
+    const actionMessage = availableAlerts.pop();
+    const completionMessage = ALERT_MAPPING[actionMessage];
+
+    logAlert(actionMessage);
+
+    const upperMsg = actionMessage.toUpperCase();
+    const isYellowAlert = upperMsg.includes("TRANSFER") ||
+        upperMsg.includes("TRANSIT") ||
+        upperMsg.includes("MAINTENANCE");
+
+    if (isYellowAlert) {
+        activeYellowEvents++;
+        updateSiteStatus();
+    }
+
+    if (completionMessage) {
+        const completionDelay = Math.floor(Math.random() * 40000) + 15000; // 15-55s
+
+        setTimeout(() => {
+            if (!isBreachActive) {
+                logAlert(completionMessage);
+
+                if (isYellowAlert) {
+                    activeYellowEvents--;
+                    updateSiteStatus();
+                }
+            }
+        }, completionDelay);
+    }
+
+    const nextAlertDelay = Math.floor(Math.random() * 30000) + 10000; // 10-40s
+    setTimeout(runAlertCycle, nextAlertDelay);
+}
+
+function runBreachCycle() {
+    if (isBreachActive) return;
+    if (Math.random() < CONTAINMENT_BREACH_CHANCE) {
+        triggerBreach();
+    }
+}
+
+function initializePage() {
+    loadAppState();
+
+    if (!timeUpdateInterval) {
+        timeUpdateInterval = setInterval(updateTime, 1000);
+        updateTime();
+    }
+
+    if (!isBreachActive) {
+
+        if (!breachInterval) {
+            runAlertCycle();
+            breachInterval = setInterval(runBreachCycle, 60000);
+        }
+    }
+
+    if (menuToggle) {
+        menuToggle.classList.remove('hidden');
+    }
+    if (menuToggle && sidebar) {
+        menuToggle.onclick = () => sidebar.classList.toggle('open');
+    }
+
+    if (notificationIcon && alertDropdown) {
+        notificationIcon.onclick = () => {
+            alertDropdown.classList.toggle('hidden');
+            if (!alertDropdown.classList.contains('hidden')) {
+                unreadAlertCount = 0;
+                if (alertCountEl) alertCountEl.classList.add('hidden');
+                saveAppState();
+            }
+        };
+    }
+}
+
+replenishAlerts();
+
+const alreadyBooted = 
+    getCookie('hasBooted') === 'true' || 
+    document.documentElement.classList.contains('has-booted');
+
+if (alreadyBooted) {
+    if (terminalScreen) {
+        terminalScreen.style.display = 'none';
+        terminalScreen.style.opacity = '0';
+    }
+    if (mainContent) {
+        mainContent.classList.remove('hidden');
+        mainContent.style.display = 'block';
+        mainContent.style.opacity = '1';
+    }
+    initializePage();
+} else if (terminalScreen && mainContent) {
+    terminalScreen.addEventListener('click', () => {
+        runBootSequence();
+    }, { once: true });
+} else {
+    initializePage();
+}

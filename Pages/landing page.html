@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Foundation - Classified Access</title>
+    <link rel="stylesheet" href="../CSS/Landing%20page/landing%20page.css">
+
+</head>
+
+<body id="scp-page">
+
+    <div id="terminal-screen">
+        <div class="terminal-content">
+            <div id="terminal-output">
+                <p class="line">Establishing connection to SECURE_SERVER_SITE-7...</p>
+                <span class="cursor">█</span>
+            </div>
+        </div>
+    </div>
+
+    <button id="menu-toggle" class="menu-button hidden">☰</button>
+
+    <nav id="sidebar">
+        <h3>CLASSIFIED DATABASE MENU</h3>
+        <ul>
+            <li><a href="Sub%20pages/About%20the%20SCP%20Foundation.html">About The SCP Foundation</a></li>
+            <li><a href="Sub%20pages/Security%20Clearance%20Levels.html">Security%20Clearance%20Levels</a></li>
+            <li><a href="Sub%20pages/Object%20Classes.html">Object%20Classes</a></li>
+            <li><a href="Sub%20pages/Departments.html">Departments</a></li>
+            <li><a href="Sub%20pages/SCP%20files.html">SCP Files (Series I)</a></li>
+        </ul>
+        <hr>
+        <div class="user-info">
+            <p>USER ID: P-477-L0</p>
+            <p>JUNIOR RESEARCHER</p>
+            <p>CLEARANCE: LEVEL 2</p>
+        </div>
+    </nav>
+
+
+    <div id="lockdown-screen">
+        <h2>CONTAINMENT BREACH IN PROGRESS!</h2>
+        <p>IMMEDIATELY FOLLOW STANDARD EVACUATION PROCEDURE. DO NOT ATTEMPT TO ACCESS CLASSIFIED DATA.</p>
+        <p>INITIATING AMNESTICS SEQUENCE... <span id="amnestic-timer">10</span>...</p>
+    </div>
+
+
+    <div id="main">
+
+        <div id="main-content" class="hidden">
+
+            <header class="hero-section">
+                <h2 class="clearance-level">WELCOME, LEVEL 2 CLEARANCE PERSONNEL</h2>
+            </header>
+
+            <div class="status-bar-container">
+                <span id="server-time" class="status-bar"></span>
+                <span id="site-status" class="status-bar">SITE-██ STATUS: GREEN</span>
+            </div>
+
+            <div id="alert-notification">
+                <p id="alert-message"></p>
+            </div>
+
+            <div id="notification-area">
+                <div id="notification-icon">
+                    <img id="notification-image" src="../Media/Images/Notification%20Icon.png" alt="Alert Icon"
+                        class="notification-graphic">
+                    <span id="alert-count" class="hidden">0</span>
+                </div>
+                <div id="alert-dropdown" class="hidden">
+                    <h3>ACTIVITY LOG</h3>
+                    <ul id="alert-list">
+                    </ul>
+                    <p id="no-alerts-msg">No unread alerts.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="../JS/Landing%20page/landing%20page.js"></script>
+
+</body>
+
+</html>

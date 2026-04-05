@@ -1,0 +1,78 @@
+@import url('../../../CSS/Landing%20page/landing%20page.css');
+
+#main-content {
+    opacity: 1;
+    padding: 30px 40px 30px 20px;
+    max-width: 1000px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#main-content p {
+    color: var(--text-color-primary);
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin-bottom: 1.2em;
+    padding-left: 20px;
+}
+
+.hero-section {
+    padding-top: 50px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.clearance-level {
+    color: var(--text-color-secondary);
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.section-heading {
+    color: var(--accent-color);
+    font-size: 1.6em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+.level-entry {
+    margin-bottom: 25px;
+    padding: 10px 0;
+    border-left: 3px solid var(--accent-color-faded);
+}
+
+.level-title {
+    color: var(--text-color-primary);
+    font-size: 1.25em;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+    padding-left: 17px;
+    position: relative;
+}
+
+.job-title {
+    color: var(--text-color-secondary);
+    font-size: 1.1em;
+    font-weight: 700;
+    margin: 15px 0 5px 0;
+    padding-left: 17px;
+}
+
+.job-entry p {
+    padding-left: 35px;
+}
+
+.document-divider {
+    border: none;
+    height: 1px;
+    background-color: #333333;
+    margin: 50px 0;
+}
+
+strong {
+    font-weight: 900;
+    color: var(--text-color-secondary);
+}

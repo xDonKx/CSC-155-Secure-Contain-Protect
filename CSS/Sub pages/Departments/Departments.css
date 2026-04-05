@@ -1,0 +1,86 @@
+@import url('../../../CSS/Landing%20page/landing%20page.css');
+
+#main-content {
+    opacity: 1;
+    padding: 30px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.level-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 15px 0;
+    border-left: 3px solid var(--accent-color);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.entry-content {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.level-title {
+    color: var(--text-color-primary);
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    margin-top: -5px;
+    padding-left: 17px;
+}
+
+.entry-content p {
+    padding-left: 17px;
+    margin: 0;
+}
+
+.entry-image {
+    flex: 0 0 120px;
+    text-align: center;
+    padding-right: 15px;
+}
+
+.entry-image img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--accent-color-faded);
+    filter: invert(1) brightness(0.1);
+}
+
+.entry-image.white img {
+    filter: none;
+}
+
+.section-heading {
+    color: var(--accent-color);
+    text-transform: uppercase;
+    font-size: 1.8em;
+    border-bottom: 2px solid var(--accent-color);
+    margin: 40px 0 20px 0;
+}
+
+.redacted {
+    background-color: #ffffff15;
+    color: transparent;
+    cursor: default;
+    user-select: none;
+}
+
+.deletions-entry {
+    border-color: #f08215;
+        background: rgba(240, 130, 21, 0.02);
+}
+
+.deletions-entry .level-title {
+    color: #f08215;
+}
+
+.hidden-entry {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hidden-entry:hover {
+    opacity: 1;
+}
