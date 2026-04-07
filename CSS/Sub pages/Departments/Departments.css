@@ -45,7 +45,7 @@
     max-width: 100%;
     height: auto;
     border: 1px solid var(--accent-color-faded);
-    filter: invert(1) brightness(0.1);
+    filter: invert(1) brightness(0.3);
 }
 
 .entry-image.white img {
